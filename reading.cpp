@@ -93,5 +93,7 @@ Image ReadBMP(const string& filename)
             throw std::runtime_error("Unknown size of DIB header of BMP file")
             break;
     }
+    file.close();
+    return image;
     
 }
