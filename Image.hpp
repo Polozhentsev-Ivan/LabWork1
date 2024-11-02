@@ -10,6 +10,7 @@ LabWork 1 project
 #include <string>
 #include "BMPheader.hpp"
 #include <variant>
+#include <fstream>
 
 struct Pixel
 {
