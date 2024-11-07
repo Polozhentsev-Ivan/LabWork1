@@ -1,12 +1,20 @@
 #include "pixelReadf.hpp"
-void PixelData(std::ifstream& file, Image& image, uint16_t bitCount)
+#include <limits>
+void PixelDataR(std::ifstream& file, Image& image, uint16_t bitCount)
 {
+    std::cout << "Width: " << image.width << ", Height: " << image.height << ", Bit Count: " << bitCount << "\n";//
+    
+    
     file.seekg(image.fileHeader.bfOffBits, std::ios::beg);
     int rowSize = ((image.width * bitCount + 31) / 32) * 4;
     int dataSize = rowSize * std::abs(image.height);
+    if (dataSize > std::numeric_limits<std::vector<uint8_t>::size_type>::max()) {
+        throw std::runtime_error("Image data size exceeds maximum allowed vector size.");
+    }
+    std::cout << "Row Size: " << rowSize << ", Data Size: " << dataSize << "\n"; //
     std::vector<uint8_t> pixelData(dataSize);
     file.read(reinterpret_cast<char*>(pixelData.data()), dataSize);
-    image.data.resize(std::abs(image.height), std::vector<Pixel>(image.width));
+    image.pixelData.resize(std::abs(image.height), std::vector<Pixel>(image.width));
     switch (bitCount)
     {
         case 1:

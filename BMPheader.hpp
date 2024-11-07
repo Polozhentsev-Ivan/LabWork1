@@ -14,15 +14,13 @@ struct BITMAPFILEHEADER
 
 struct BITMAPCOREHEADER
 {
-    uint32_t bcSize; //12
-    uint16_t bcWidth;
-    uint16_t bcHeight;
-    uint16_t bcPlanes;
-    uint16_t bcBitCount; //1, 4, 8, 24
+    uint16_t biWidth;
+    uint16_t biHeight;
+    uint16_t biPlanes;
+    uint16_t biBitCount; //1, 4, 8, 24
 };
 struct BITMAPINFOHEADER
 {
-    uint32_t biSize; //40
     int32_t biWidth;
     int32_t biHeight; // если + -- "bottom-uo", если - -- "top-down"
     uint16_t biPlanes; //1
@@ -36,7 +34,6 @@ struct BITMAPINFOHEADER
 };
 struct BITMAPV2INFOHEADER
 {
-    uint32_t biSize; //52
     int32_t biWidth;
     int32_t biHeight;
     uint16_t biPlanes;
@@ -54,7 +51,6 @@ struct BITMAPV2INFOHEADER
 };
 struct BITMAPV3INFOHEADER
 {
-    uint32_t biSize; //56
     int32_t biWidth;
     int32_t biHeight;
     uint16_t biPlanes;
@@ -72,7 +68,6 @@ struct BITMAPV3INFOHEADER
 };
 struct BITMAPV4HEADER
 {
-    uint32_t biSize; //108
     int32_t biWidth;
     int32_t biHeight;
     uint16_t  biPlanes;
@@ -95,7 +90,6 @@ struct BITMAPV4HEADER
 };
 struct BITMAPV5HEADER
 {
-    uint32_t biSize; //124
     int32_t biWidth;
     int32_t biHeight;
     uint16_t  biPlanes;
