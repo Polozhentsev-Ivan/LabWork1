@@ -10,7 +10,7 @@ void writeBMP(const Image& image, const std::string& filename)
     std::streampos currentPos = file.tellp();
     std::cout << currentPos << "\n";
     int paddingToData = image.fileHeader.bfOffBits - currentPos;
-    if (paddingToData > 0) 
+    if (paddingToData > 0)
     {
         std::vector<uint8_t> padding(paddingToData, 0);
         file.write(reinterpret_cast<const char*>(padding.data()), paddingToData);

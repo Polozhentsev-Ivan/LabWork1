@@ -8,7 +8,8 @@ Image::Image(const Image& other) : width(other.width), height(other.height), pix
 
 Image& Image::operator=(const Image& other)
 {
-    if (this == &other){
+    if (this == &other)
+    {
         return *this;
     }
     width = other.width;

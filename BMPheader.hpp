@@ -47,7 +47,7 @@ struct BITMAPV2INFOHEADER //52
     uint32_t bV4RedMask;
     uint32_t bV4GreenMask;
     uint32_t bV4BlueMask;
-    
+
 };
 struct BITMAPV3INFOHEADER //56
 {

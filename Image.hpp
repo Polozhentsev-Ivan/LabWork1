@@ -27,9 +27,9 @@ public:
     Image(int width, int height);
     Image(const Image& other);
     Image& operator=(const Image& other);
-    #pragma pack(push, 1)
+#pragma pack(push, 1)
     uint32_t biSize;
-    #pragma pack(pop)
+#pragma pack(pop)
     std::string filename;
     BITMAPFILEHEADER fileHeader;
     std::variant <BITMAPCOREHEADER, BITMAPINFOHEADER, BITMAPV2INFOHEADER, BITMAPV3INFOHEADER, BITMAPV4HEADER, BITMAPV5HEADER> DIBHeader;
@@ -38,7 +38,7 @@ public:
     std::vector<Pixel> pixelData;
     uint16_t bitcount;
 
-    
-    
+
+
 };
 #endif

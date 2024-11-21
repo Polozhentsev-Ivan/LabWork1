@@ -19,7 +19,7 @@ void PixelDataR(std::ifstream& file, Image& image, uint16_t bitCount)
 
     std::vector<uint8_t> data(padding * height);
     file.read(reinterpret_cast<char*>(data.data()), data.size());
-    
+
     image.pixelData.resize(width * height);
     std::cout << "data size: " << data.size() << "\n";
     size_t dataIndex = 0;
@@ -42,8 +42,8 @@ void PixelDataR(std::ifstream& file, Image& image, uint16_t bitCount)
         }
 
         dataIndex += padding1;
-       
+
     }
-    
+
 }
 
