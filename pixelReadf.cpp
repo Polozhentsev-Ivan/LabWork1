@@ -1,3 +1,6 @@
+/* Polozhentsev Ivan iv.poloz.wdesd@mail.ru
+first LabWork project
+*/
 #include "pixelReadf.hpp"
 #include <iostream>
 

@@ -1,3 +1,6 @@
+/* Polozhentsev Ivan iv.poloz.wdesd@mail.ru
+first LabWork project
+*/
 #include "bmp_io.hpp"
 
 void writeBMP(const Image& image, const std::string& filename)

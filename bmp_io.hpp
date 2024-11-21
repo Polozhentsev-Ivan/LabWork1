@@ -1,3 +1,6 @@
+/* Polozhentsev Ivan iv.poloz.wdesd@mail.ru
+first LabWork project
+*/
 #ifndef BMP_IO_HPP
 #define BMP_IO_HPP
 #include "Image.hpp"

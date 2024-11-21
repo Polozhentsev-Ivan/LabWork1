@@ -1,3 +1,6 @@
+/* Polozhentsev Ivan iv.poloz.wdesd@mail.ru
+first LabWork project
+*/
 #ifndef GAUSSE_HPP
 #define GAUSSE_HPP
 #include "Image.hpp"

@@ -1,3 +1,6 @@
+/* Polozhentsev Ivan iv.poloz.wdesd@mail.ru
+first LabWork project
+*/
 #include "gausse.hpp"
 Image filterImage(const Image& image, int kernelSize, float sigma)
 {

@@ -1,3 +1,6 @@
+/* Polozhentsev Ivan iv.poloz.wdesd@mail.ru
+first LabWork project
+*/
 #ifndef BMPHEADER_HPP
 #define BMPHEADER_HPP
 

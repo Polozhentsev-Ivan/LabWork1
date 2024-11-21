@@ -1,3 +1,6 @@
+/* Polozhentsev Ivan iv.poloz.wdesd@mail.ru
+first LabWork project
+*/
 #include "rotate.hpp"
 #include <stdexcept>
 #include <cassert>
@@ -59,5 +62,8 @@ Image rotate(const Image& image, int angle)
             header.biHeight = newHeight;
         }, rotatedImage.DIBHeader);
         return rotatedImage;
+    }
+    else {
+        throw std::runtime_error("Unsupported angle: " + angle);
     }
 }
