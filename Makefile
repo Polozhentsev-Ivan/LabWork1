@@ -6,16 +6,16 @@ AFLAGS = rsv
 CXXFLAGS = -I. -std=c++17 -Wall -g -fPIC -Werror -Wpedantic
 LDXXFLAGS = $(CXXGLAGS) -L. -l:$(LIBPROJECT)
 DEPS = $(wildcard *.hpp)
-OBJ = maintest.o Image.o readBMP.o  pixelReadf.o writeBMP.o 
+OBJ = main.o Image.o readBMP.o  pixelReadf.o writeBMP.o rotate.o gausse.o 
 .PHONY: default clean cleanall
 default: $(PROJECT)
 %.o: %.cpp $(DEPS)
 	$(CXX) -c -o $@ $< $(CXXGLAGS)
 $(LIBPROJECT): $(OBJ)
 	$(A) $(AFLAGS) $@ $^
-$(PROJECT): maintest.o $(LIBPROJECT)
-	$(CXX) -o $@ maintest.o $(LDXXFLAGS); \
-	rm -f $(OBJ) maintest.o $(LIBPROJECT)
+$(PROJECT): main.o $(LIBPROJECT)
+	$(CXX) -o $@ main.o $(LDXXFLAGS); \
+	rm -f $(OBJ) main.o $(LIBPROJECT)
 all : $(PROJECT)
 
 clean:

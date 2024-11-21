@@ -25,6 +25,8 @@ class Image
 public:
     Image();
     Image(int width, int height);
+    Image(const Image& other);
+    Image& operator=(const Image& other);
     #pragma pack(push, 1)
     uint32_t biSize;
     #pragma pack(pop)
