@@ -3,7 +3,7 @@
 
 #pragma pack(push, 1)
 
-struct BITMAPFILEHEADER
+struct BITMAPFILEHEADER //14
 {
     uint16_t bfType; //Всегда BM
     uint32_t bfSize;
@@ -12,14 +12,14 @@ struct BITMAPFILEHEADER
     uint32_t bfOffBits;
 };
 
-struct BITMAPCOREHEADER
+struct BITMAPCOREHEADER //12
 {
-    uint16_t biWidth;
-    uint16_t biHeight;
+    uint32_t biWidth;
+    uint32_t biHeight;
     uint16_t biPlanes;
     uint16_t biBitCount; //1, 4, 8, 24
 };
-struct BITMAPINFOHEADER
+struct BITMAPINFOHEADER //48
 {
     int32_t biWidth;
     int32_t biHeight; // если + -- "bottom-uo", если - -- "top-down"
@@ -32,7 +32,7 @@ struct BITMAPINFOHEADER
     uint32_t biClrUsed;
     uint32_t biClrImportant;
 };
-struct BITMAPV2INFOHEADER
+struct BITMAPV2INFOHEADER //52
 {
     int32_t biWidth;
     int32_t biHeight;
@@ -49,7 +49,7 @@ struct BITMAPV2INFOHEADER
     uint32_t bV4BlueMask;
     
 };
-struct BITMAPV3INFOHEADER
+struct BITMAPV3INFOHEADER //56
 {
     int32_t biWidth;
     int32_t biHeight;
@@ -66,7 +66,7 @@ struct BITMAPV3INFOHEADER
     uint32_t bV4BlueMask;
     uint32_t bV4AlphaMask;
 };
-struct BITMAPV4HEADER
+struct BITMAPV4HEADER //108
 {
     int32_t biWidth;
     int32_t biHeight;
@@ -88,7 +88,7 @@ struct BITMAPV4HEADER
     uint32_t bV4GammaGreen;
     uint32_t bV4GammaBlue;
 };
-struct BITMAPV5HEADER
+struct BITMAPV5HEADER //124
 {
     int32_t biWidth;
     int32_t biHeight;

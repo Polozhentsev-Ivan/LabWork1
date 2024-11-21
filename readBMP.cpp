@@ -17,6 +17,8 @@ Image readBMP(const std::string& filename)
         throw std::runtime_error("Your file isn't BMP format");
     }
     
+    std::cout << "Data size: " << image.fileHeader.bfSize << "\n";
+    
     uint32_t dibHeaderSize;
     file.read(reinterpret_cast<char*>(&dibHeaderSize), sizeof(dibHeaderSize));
     image.biSize = dibHeaderSize;
@@ -111,7 +113,7 @@ Image readBMP(const std::string& filename)
             break;
     }
     file.close();
-    std::cout << "Чтение прошло успешно";
+    std::cout << "Чтение прошло успешно" << "\n";
     return image;
     
 }

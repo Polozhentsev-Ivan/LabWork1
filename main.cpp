@@ -1,7 +1,7 @@
 #include <iostream>
 #include <string>
 #include "Image.hpp"
-#include "bmp-io.hpp"
+#include "bmp_io.hpp"
 #include "rotate.hpp"
 #include "gausse.hpp"
 
@@ -13,23 +13,23 @@ int main()
     
     Image image = readBMP(filename);
     
-    char c;
-    std::cout << "Do you want to rotate your image? (y/n): "
+    std::string c;
+    std::cout << "Do you want to rotate your image? (y/n): ";
     std::cin >> c;
     if (c == "y")
     {
     
     
         double angle;
-        c::out << "Enter the angle of rotation: ";
-        c::in >> angle
-        Image rotatedImage = rotateImage(image, angle);
-        std::string rotatedFilename = filename + "_rotated.bmp"
+        std::cout << "Enter the angle of rotation (90, 180, 270 degrees clockwise): ";
+        std::cin >> angle;
+        Image rotatedImage = rotate(image, angle);
+        std::string rotatedFilename = "rotated_" + filename;
         writeBMP(rotatedImage, rotatedFilename);
         std::cout << "File saved as " << rotatedFilename;
     }
     
-    std::cout << "Do you want to apply Gausse filter on your image? (y/n): ";
+    /*std::cout << "Do you want to apply Gausse filter on your image? (y/n): ";
     std::cin >> c;
     if (c == "y")
     {
@@ -39,10 +39,10 @@ int main()
         c::in >> kernelSize;         
         c::out << "Enter the sigma value: ";
         c::in >> sigma;
-        Image filteredImage = filterImage(image, angle);
+        Image filteredImage = filterImage(image, kernelSize, sigma);
         std::string filteredFilename = filename + "_gausse.bmp"
         writeBMP(filteredImage, filteredFilename);
         std::cout << "File saved as " << filteredFilename;
-    }
+    }*/
     return 0;
 }

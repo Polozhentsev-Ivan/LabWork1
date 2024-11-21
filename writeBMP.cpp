@@ -8,31 +8,39 @@ void writeBMP(const Image& image, const std::string& filename)
     file.write(reinterpret_cast<const char*>(&dibHeaderSize), sizeof(dibHeaderSize));
     file.write(reinterpret_cast<const char*>(&image.DIBHeader), sizeof(image.DIBHeader));
     std::streampos currentPos = file.tellp();
+    std::cout << currentPos << "\n";
     int paddingToData = image.fileHeader.bfOffBits - currentPos;
     if (paddingToData > 0) 
     {
         std::vector<uint8_t> padding(paddingToData, 0);
         file.write(reinterpret_cast<const char*>(padding.data()), paddingToData);
     }
-    const uint32_t rowSize = ((image.bitcount * image.width + 31)/32) * 4;
-    int height = std::abs(image.height);
-    bool isBottomUp = image.height > 0;
-    
-    for (int i = 0; i < height; ++i)
+    file.seekp(image.fileHeader.bfOffBits, std::ios::beg);
+    int width = image.width;
+    int height = image.height;
+    uint16_t bitCount = image.bitcount;
+
+
+    int bytes = bitCount / 8;
+    int row_padded = (width * bytes + 3) & (~3);
+    int paddingSize = row_padded - width * bytes;
+    size_t pixelIndex = 0;
+
+
+    std::vector<uint8_t> padding1(paddingSize, 0);
+
+    for (int y = 0; y < height; ++y)
     {
-        int rowIndex = isBottomUp ? (height - 1 - i) : i;
-        if (image.pixelData[rowIndex].size() < rowSize)
+        for (int x = 0; x < width; ++x)
         {
-            std::vector<Pixel> paddedRow = image.pixelData[rowIndex];
-            paddedRow.resize(rowSize);
-            file.write(reinterpret_cast<const char*>(paddedRow.data()), rowSize);
-            
-        } 
-        else 
+            file.write(reinterpret_cast<const char*>(&image.pixelData[pixelIndex].red), 1);
+            file.write(reinterpret_cast<const char*>(&image.pixelData[pixelIndex].green), 1);
+            file.write(reinterpret_cast<const char*>(&image.pixelData[pixelIndex++].blue), 1);
+        }
+
+        if (paddingSize > 0)
         {
-            file.write(reinterpret_cast<const char*>(image.pixelData[rowIndex].data()), rowSize);
+            file.write(reinterpret_cast<const char*>(padding1.data()), paddingSize);
         }
     }
-    file.close();
-    
 }
