@@ -10,7 +10,7 @@ first LabWork project
 Image rotate(const Image& image, int angle)
 {
 
-    angle = angle % 360;  // Нормализуем угол
+    angle = angle % 360;
     if (angle == 270)
     {
         int newWidth = image.height;
