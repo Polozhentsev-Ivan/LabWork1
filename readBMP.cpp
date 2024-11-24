@@ -25,7 +25,7 @@ Image readBMP(const std::string& filename)
     uint32_t dibHeaderSize;
     file.read(reinterpret_cast<char*>(&dibHeaderSize), sizeof(dibHeaderSize));
     image.biSize = dibHeaderSize;
-
+    // Try to implement template function
     switch (dibHeaderSize)
     {
     case 12:

@@ -31,7 +31,7 @@ int main()
         Image filteredImage = filterImage(rotatedImage, 3, 1);
         std::string filteredFilename = "gausse(3x3, 1.0f)_" + filename;
         writeBMP(filteredImage, filteredFilename);
-        std::cout << "File saved as " << filteredFilename;
+        std::cout << "File saved as " << filteredFilename << std::endl;
 
     }
     else if (c == "n")
@@ -54,7 +54,7 @@ int main()
             Image rotatedImage = rotate(image, angle);
             std::string rotatedFilename = "rotated_" + filename;
             writeBMP(rotatedImage, rotatedFilename);
-            std::cout << "File saved as " << rotatedFilename;
+            std::cout << "File saved as " << rotatedFilename << "\n";
         }
 
         std::cout << "Do you want to apply Gausse filter on your image? (y/n): ";
@@ -70,7 +70,7 @@ int main()
             Image filteredImage = filterImage(image, kernelSize, sigma);
             std::string filteredFilename = "gausse_" + filename;
             writeBMP(filteredImage, filteredFilename);
-            std::cout << "File saved as " << filteredFilename;
+            std::cout << "File saved as " << filteredFilename << std::endl;
         }
     }
     return 0;

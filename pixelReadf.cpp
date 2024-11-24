@@ -6,8 +6,7 @@ first LabWork project
 
 void PixelDataR(std::ifstream& file, Image& image, uint16_t bitCount)
 {
-    std::cout << image.fileHeader.bfOffBits << "\n";
-
+ 
     file.seekg(image.fileHeader.bfOffBits, std::ios::beg);
 
     int width = image.width;
@@ -17,7 +16,7 @@ void PixelDataR(std::ifstream& file, Image& image, uint16_t bitCount)
     std::cout << "width in bytes = " << width*bytes << "\n";
     std::cout << "height in bytes = " << height*bytes << "\n";
     int padding = (width * bytes + 3) & (~3);
-    std::cout << "padding = " << padding << "\n";
+    std::cout << "row_padding = " << padding << "\n";
 
 
     std::vector<uint8_t> data(padding * height);
