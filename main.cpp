@@ -7,6 +7,8 @@ first LabWork project
 #include "bmp_io.hpp"
 #include "rotate.hpp"
 #include "gausse.hpp"
+#include <chrono>
+#include <omp.h>
 
 int main()
 {
@@ -20,19 +22,30 @@ int main()
         std::cin >> filename;
 
         Image image = readBMP(filename);
+        auto t0 = std::chrono::steady_clock::now();
         Image rotatedImage = rotate(image, 270);
         std::string rotatedFilename = "rotated270_" + filename;
+        auto dt = std::chrono::duration_cast<std::chrono::milliseconds>(
+            std::chrono::steady_clock::now() - t0).count();
+        std::cout << "Rotation 270 elapsed: " << dt << " ms\n";
         writeBMP(rotatedImage, rotatedFilename);
         std::cout << "File saved as " << rotatedFilename << "\n";
+        t0 = std::chrono::steady_clock::now();
         rotatedImage = rotate(image, 90);
         rotatedFilename = "rotated90_" + filename;
+        dt = std::chrono::duration_cast<std::chrono::milliseconds>(
+            std::chrono::steady_clock::now() - t0).count();
+        std::cout << "Rotation 90 elapsed: " << dt << " ms\n";
         writeBMP(rotatedImage, rotatedFilename);
         std::cout << "File saved as " << rotatedFilename << "\n";
+        t0 = std::chrono::steady_clock::now();
         Image filteredImage = filterImage(rotatedImage, 3, 1);
         std::string filteredFilename = "gausse(3x3, 1.0f)_" + filename;
+        dt = std::chrono::duration_cast<std::chrono::milliseconds>(
+            std::chrono::steady_clock::now() - t0).count();
+        std::cout << "Filter elapsed: " << dt << " ms\n";
         writeBMP(filteredImage, filteredFilename);
         std::cout << "File saved as " << filteredFilename << std::endl;
-
     }
     else if (c == "n")
     {

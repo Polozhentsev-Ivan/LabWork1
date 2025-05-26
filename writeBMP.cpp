@@ -26,7 +26,6 @@ void writeBMP(const Image& image, const std::string& filename)
     int bytes = bitCount / 8;
     int row_padded = (width * bytes + 3) & (~3);
     int paddingSize = row_padded - width * bytes;
-    size_t pixelIndex = 0;
     
     std::vector<uint8_t> rowBuffer(row_padded); 
 
