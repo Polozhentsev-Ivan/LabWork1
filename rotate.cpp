@@ -4,13 +4,13 @@ first LabWork project
 #include "rotate.hpp"
 #include <stdexcept>
 #include <cassert>
-
+#include <omp.h>
 
 
 Image rotate(const Image& image, int angle)
 {
     angle = angle % 360;
-    if (angle != 90 & angle != 270)
+    if (angle != 90 && angle != 270)
     {
         throw std::runtime_error("Unsupported angle: " + angle);
     }
@@ -20,6 +20,7 @@ Image rotate(const Image& image, int angle)
     rotatedImage.width = newWidth;
     rotatedImage.height = newHeight;
     rotatedImage.pixelData = std::vector<Pixel>(image.pixelData.size());
+    #pragma omp parallel for collapse(2) schedule(static)
     for (int y = 0; y < image.height; ++y)
     {
         for (int x = 0; x < image.width; ++x)

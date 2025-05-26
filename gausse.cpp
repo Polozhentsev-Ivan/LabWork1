@@ -2,6 +2,8 @@
 first LabWork project
 */
 #include "gausse.hpp"
+#include <omp.h>
+
 Pixel applyKernel(const Image& image, const std::vector<std::vector<float>>& kernel, int x, int y)
 {
     int kernelSize = kernel.size();
@@ -9,6 +11,7 @@ Pixel applyKernel(const Image& image, const std::vector<std::vector<float>>& ker
     float sumR = 0, sumG = 0, sumB = 0;
     float sumKernel = 0;
 
+    #pragma omp parallel for collapse(2) schedule(static)
     for (int ky = -offset; ky <= offset; ++ky)
     {
         for (int kx = -offset; kx <= offset; ++kx)
@@ -49,7 +52,7 @@ Image filterImage(const Image& image, int kernelSize, float sigma)
     std::vector<std::vector<float>> kernel = createKernel(kernelSize, sigma);
     Image filteredImage = image;
     filteredImage.pixelData = std::vector<Pixel>(image.pixelData.size());
-
+    #pragma omp parallel for collapse(2) schedule(static)
     for (int y = 0; y < image.height; ++y)
     {
         for (int x = 0; x < image.width; ++x)

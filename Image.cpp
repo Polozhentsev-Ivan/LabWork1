@@ -4,10 +4,17 @@ first LabWork project
 #include "Image.hpp"
 Image::Image() : width(0), height(0) {}
 Image::Image(int width, int height) : width(width), height(height) {}
-Image::Image(const Image& other) : width(other.width), height(other.height), pixelData(other.pixelData), fileHeader(other.fileHeader), DIBHeader(other.DIBHeader), biSize(other.biSize), bitcount(other.bitcount)
+Image::Image(const Image& other) : 
+    biSize(other.biSize),
+    filename(other.filename),
+    fileHeader(other.fileHeader),
+    DIBHeader(other.DIBHeader),
+    width(other.width),
+    height(other.height),
+    pixelData(other.pixelData),
+    bitcount(other.bitcount)
 {
 }
-
 
 Image& Image::operator=(const Image& other)
 {
@@ -15,12 +22,13 @@ Image& Image::operator=(const Image& other)
     {
         return *this;
     }
+    biSize = other.biSize;
+    filename = other.filename;
+    fileHeader = other.fileHeader;
+    DIBHeader = other.DIBHeader;
     width = other.width;
     height = other.height;
     pixelData = other.pixelData;
-    fileHeader = other.fileHeader;
-    DIBHeader = other.DIBHeader;
-    biSize = other.biSize;
     bitcount = other.bitcount;
     return *this;
 }
